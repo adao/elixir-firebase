@@ -5,6 +5,11 @@ defmodule Firebase.JWT.ImplementationTest do
   alias Firebase.JWT.Implementation
   alias Google.Auth
 
+  setup_all do
+    {:ok, _pid} = start_supervised(Implementation)
+    :ok
+  end
+
   setup do
     email = "#{:random.uniform}@firebase.com"
     resp = Auth.sign_up(email, "Password1!")
